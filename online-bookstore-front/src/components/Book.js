@@ -237,7 +237,7 @@ const BooksPage = () => {
                 value={newBook.title}
                 onChange={handleChange}
                 placeholder="Title"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -246,7 +246,7 @@ const BooksPage = () => {
                 value={newBook.author}
                 onChange={handleChange}
                 placeholder="Author"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -255,7 +255,7 @@ const BooksPage = () => {
                 value={newBook.price}
                 onChange={handleChange}
                 placeholder="Price"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -264,7 +264,7 @@ const BooksPage = () => {
                 value={newBook.description}
                 onChange={handleChange}
                 placeholder="Description"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
               />
               <input
                 type="number"
@@ -272,7 +272,7 @@ const BooksPage = () => {
                 value={newBook.stock}
                 onChange={handleChange}
                 placeholder="Stock"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <div className="flex justify-end space-x-2">
@@ -306,7 +306,7 @@ const BooksPage = () => {
                 value={newBook.title}
                 onChange={handleChange}
                 placeholder="Title"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -315,7 +315,7 @@ const BooksPage = () => {
                 value={newBook.author}
                 onChange={handleChange}
                 placeholder="Author"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -324,7 +324,7 @@ const BooksPage = () => {
                 value={newBook.price}
                 onChange={handleChange}
                 placeholder="Price"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
                 required
               />
               <input
@@ -333,14 +333,17 @@ const BooksPage = () => {
                 value={newBook.description}
                 onChange={handleChange}
                 placeholder="Description"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
               />
+              <div>
+                <strong>Current Stock Count:</strong> {selectedBook.stock}
+              </div>
               <input
                 type="number"
                 value={stockAdjustment}
                 onChange={(e) => setStockAdjustment(parseInt(e.target.value))}
                 placeholder="Stock Adjustment"
-                className="border p-2 w-full"
+                className="border p-2 w-full rounded-md"
               />
               <div className="flex justify-end space-x-2">
                 <button
@@ -357,13 +360,13 @@ const BooksPage = () => {
                   Update
                 </button>
                 <button
-                type="button"
-                onClick={handleDelete}
-                className="bg-red-600 text-white px-4 py-2 rounded"
-              >
-                Delete
-              </button>
-              </div> 
+                  type="button"
+                  onClick={handleDelete}
+                  className="bg-red-600 text-white px-4 py-2 rounded"
+                >
+                  Delete
+                </button>
+              </div>
             </form>
           </div>
         </div>
