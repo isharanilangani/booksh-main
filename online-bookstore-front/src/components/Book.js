@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react"; 
-import { useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const BooksPage = () => {
@@ -17,11 +17,11 @@ const BooksPage = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [stockAdjustment, setStockAdjustment] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sessionExpired, setSessionExpired] = useState(false); 
-  const [successMessage, setSuccessMessage] = useState(""); 
+  const [sessionExpired, setSessionExpired] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const navigate = useNavigate(); 
-  const inactivityTimer = useRef(null); 
+  const navigate = useNavigate();
+  const inactivityTimer = useRef(null);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -39,12 +39,12 @@ const BooksPage = () => {
 
     // Set the inactivity timeout
     const resetTimer = () => {
-      clearTimeout(inactivityTimer.current); 
-      setSessionExpired(false); 
+      clearTimeout(inactivityTimer.current);
+      setSessionExpired(false);
       inactivityTimer.current = setTimeout(() => {
-        setSessionExpired(true); 
-        alert("Session expired. Redirecting to login."); 
-        navigate("/login"); 
+        setSessionExpired(true);
+        alert("Session expired. Redirecting to login.");
+        navigate("/login");
       }, 5 * 60 * 1000); // 5 minutes in milliseconds
     };
 
@@ -71,6 +71,11 @@ const BooksPage = () => {
     setSearchTerm(e.target.value);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    navigate('/login');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -87,7 +92,7 @@ const BooksPage = () => {
         stock: "",
       });
       setIsAddModalOpen(false);
-      setSuccessMessage("Book added successfully!"); 
+      setSuccessMessage("Book added successfully!");
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error adding book:", error);
@@ -126,7 +131,7 @@ const BooksPage = () => {
         stock: "",
       });
       setStockAdjustment(0);
-      setSuccessMessage("Book updated successfully!"); 
+      setSuccessMessage("Book updated successfully!");
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error updating book:", error);
@@ -141,7 +146,7 @@ const BooksPage = () => {
       setBooks(books.filter((book) => book._id !== selectedBook._id));
       setIsEditModalOpen(false);
       setSelectedBook(null);
-      setSuccessMessage("Book deleted successfully!"); 
+      setSuccessMessage("Book deleted successfully!");
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error deleting book:", error);
@@ -186,6 +191,14 @@ const BooksPage = () => {
           placeholder="Search by book title"
           className="border p-2 w-1/3 rounded-md border-blue-600"
         />
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300"
+        >
+          Logout
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
