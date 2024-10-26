@@ -1,5 +1,6 @@
 const Book = require('../models/bookModel');
 
+//Add books
 exports.addBook = async (req, res) => {
   try {
     const newBook = new Book(req.body);
@@ -10,6 +11,7 @@ exports.addBook = async (req, res) => {
   }
 };
 
+//read book
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
