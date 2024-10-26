@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"; // Import useRef
+import React, { useState, useEffect, useRef } from "react"; 
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 
@@ -17,11 +17,11 @@ const BooksPage = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [stockAdjustment, setStockAdjustment] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sessionExpired, setSessionExpired] = useState(false); // New state for session expiration
-  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+  const [sessionExpired, setSessionExpired] = useState(false); 
+  const [successMessage, setSuccessMessage] = useState(""); 
 
-  const navigate = useNavigate(); // Initialize useNavigate
-  const inactivityTimer = useRef(null); // Use useRef to store the timer
+  const navigate = useNavigate(); 
+  const inactivityTimer = useRef(null); 
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -39,12 +39,12 @@ const BooksPage = () => {
 
     // Set the inactivity timeout
     const resetTimer = () => {
-      clearTimeout(inactivityTimer.current); // Clear the existing timer
-      setSessionExpired(false); // Reset session expired state on activity
+      clearTimeout(inactivityTimer.current); 
+      setSessionExpired(false); 
       inactivityTimer.current = setTimeout(() => {
-        setSessionExpired(true); // Set session expired state
-        alert("Session expired. Redirecting to login."); // Optional: alert before redirect
-        navigate("/login"); // Redirect to login page
+        setSessionExpired(true); 
+        alert("Session expired. Redirecting to login."); 
+        navigate("/login"); 
       }, 5 * 60 * 1000); // 5 minutes in milliseconds
     };
 
@@ -87,7 +87,7 @@ const BooksPage = () => {
         stock: "",
       });
       setIsAddModalOpen(false);
-      setSuccessMessage("Book added successfully!"); // Set success message
+      setSuccessMessage("Book added successfully!"); 
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error adding book:", error);
@@ -126,7 +126,7 @@ const BooksPage = () => {
         stock: "",
       });
       setStockAdjustment(0);
-      setSuccessMessage("Book updated successfully!"); // Set success message
+      setSuccessMessage("Book updated successfully!"); 
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error updating book:", error);
@@ -141,7 +141,7 @@ const BooksPage = () => {
       setBooks(books.filter((book) => book._id !== selectedBook._id));
       setIsEditModalOpen(false);
       setSelectedBook(null);
-      setSuccessMessage("Book deleted successfully!"); // Set success message
+      setSuccessMessage("Book deleted successfully!"); 
       setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
     } catch (error) {
       console.error("Error deleting book:", error);
